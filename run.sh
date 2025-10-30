@@ -1,3 +1,1 @@
-sudo docker build -t weather_server_image .
-sudo docker compose up -d 
-sudo docker start weather_server_container
+sudo docker exec -it -d  weather_server_container /bin/bash -c "cd /home/weather/weatherserver/ && ./weather_server"
