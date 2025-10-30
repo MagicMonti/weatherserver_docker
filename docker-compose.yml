@@ -1,0 +1,10 @@
+services:
+  weather-server:
+    image: weather_server_image
+    container_name: weather_server_container
+    working_dir: /home/weather
+    ports:
+      - 2222:22
+      - 5320:5320
+      - 81:81
+    restart: unless-stopped
