@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y openssh-server
 RUN useradd weather
 RUN mkdir /home/weather
 RUN echo "weather:1234weather" | chpasswd
-
+RUN chown -R weather:weather /home/weather
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y universe
 RUN apt-get update
