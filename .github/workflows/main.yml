@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-env:
-  IMAGE_NAME: magicmonti/weather_server_dev
 
 jobs:
   build-and-push:
@@ -24,30 +22,7 @@ jobs:
           password: ${{ secrets.dckr_pat_2e95PwWzjOB85Q3eqPRxeYSmRkE }}
           logout : false
 
-      - name: Determine tags
-        id: tags
+      - name: Build and push Docker image
         run: |
-          SHORT_SHA=${GITHUB_SHA::7}
-          # Tag with commit SHA
-          echo "sha=${SHORT_SHA}" >> $GITHUB_OUTPUT
-          # Tag 'latest' for main branch
-          if [ "${GITHUB_REF##*/}" = "main" ]; then
-            echo "tag=latest" >> $GITHUB_OUTPUT
-          else
-            echo "tag=dev-${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Build and push image (single Dockerfile)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-            ${{ env.weather_server_dev }}:${{ steps.tags.outputs.sha }}
-            ${{ env.weather_server_dev }}:${{ steps.tags.outputs.tag }}
-
-      # Optional: if you rely on docker-compose to build multiple services, uncomment:
-      # - name: Build and push via docker-compose
-      #   run: |
-      #     docker buildx build --push --tag ${IMAGE_NAME}:${{ steps.tags.outputs.sha }} .
+          docker build -t magicmonti/weather_server_dev .
+          docker push magicmonti/weather_server_dev
