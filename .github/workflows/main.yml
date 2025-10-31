@@ -23,6 +23,7 @@ jobs:
           registry: docker.io
           username: ${{ secrets.magicmonti }}
           password: ${{ secrets.dckr_pat_kIN56_kkMbGsfXX3y4Ka3-q2_y8 }}
+          logout : false
 
       - name: Determine tags
         id: tags
