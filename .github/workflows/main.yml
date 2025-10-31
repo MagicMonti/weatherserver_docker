@@ -26,4 +26,4 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t magicmonti/weather_server_dev .
-          # docker push ghcr.io/magicmonti/weather_server_dev
+          docker push ghcr.io/magicmonti/weather_server_dev:latest
