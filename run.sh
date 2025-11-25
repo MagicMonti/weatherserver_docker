@@ -1,1 +1,0 @@
-sudo docker exec -it -d  weather_server_container /bin/bash -c "cd /home/weather/weatherserver/ && ./weather_server"
