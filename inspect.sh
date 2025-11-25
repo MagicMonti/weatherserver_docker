@@ -1,1 +1,0 @@
-sudo docker exec -it  weather_server_container ps -ef | grep "./weather_server"
